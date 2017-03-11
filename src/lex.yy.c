@@ -786,7 +786,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case YY_STATE_EOF(INITIAL):
 #line 19 "rules.l"
-{printf ("End of file");}
+{return EnOF;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
@@ -1810,11 +1810,14 @@ int main(int ac, char **av)
             return (-1);
         }
         yyset_in(fd);
-        yylex();
+        if(yylex()==EnOF)
+        {
+        	return 0 ;
+        };
         fclose(fd);
     }
     else
-        printf("Usage: a.out filename\n");
+        printf("Usage: a.out filename.txt\n");
     return (0);
 }
 

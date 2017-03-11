@@ -16,7 +16,7 @@ RW while|for|if|else
 {DIGIT}+"."{DIGIT}* 		 {printf ("NUMLITERAL ");}
 {DIGIT}*					 {printf ("NUMLITERAL ");}
 {OPE} 						 {printf ("OPERATOR ");}
-<<EOF>>    					 {printf ("End of file");}
+<<EOF>>    					 {return EnOF;}
 %%
 
 int main(int ac, char **av)
@@ -33,10 +33,13 @@ int main(int ac, char **av)
             return (-1);
         }
         yyset_in(fd);
-        yylex();
+        if(yylex()==EnOF)
+        {
+        	return 0 ;
+        };
         fclose(fd);
     }
     else
-        printf("Usage: a.out filename\n");
+        printf("Usage: a.out filename.txt\n");
     return (0);
 }

@@ -3,7 +3,7 @@
 
 
 //Tokens
-//#define ID 1
+#define EnOF -1
 
 typedef enum token_types 
 {
