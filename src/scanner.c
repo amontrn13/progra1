@@ -9,5 +9,5 @@ void initScanner()
 {
 	printf("Init prepocess...\n");
 	//se llama al preprocesador
-	crearArchivoTemp();
+	createTempFile();
 }

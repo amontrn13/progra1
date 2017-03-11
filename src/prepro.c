@@ -1,6 +1,6 @@
 #include "prepro.h"
 
-void crearArchivoTemp()
+void createTempFile()
 {
 	FILE *temp, *fp1;
 	temp = fopen ("sourceTemp.txt", "w");
