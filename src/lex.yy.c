@@ -468,7 +468,8 @@ char *yytext;
 #line 2 "rules.l"
 #include <stdlib.h>
 #include <stdio.h>
-#line 472 "lex.yy.c"
+#include "scanner.h"
+#line 473 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -686,10 +687,10 @@ YY_DECL
 		}
 
 	{
-#line 9 "rules.l"
+#line 10 "rules.l"
 
 
-#line 693 "lex.yy.c"
+#line 694 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -748,20 +749,20 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 11 "rules.l"
+#line 12 "rules.l"
 {printf ("ID");}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 12 "rules.l"
+#line 13 "rules.l"
 {printf ("NUMBER");}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 14 "rules.l"
+#line 15 "rules.l"
 ECHO;
 	YY_BREAK
-#line 765 "lex.yy.c"
+#line 766 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1762,11 +1763,15 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 14 "rules.l"
+#line 15 "rules.l"
 
 
-main()
-{
+int main(void)
+{	printf("incia");
+	initScanner();
+	printf("termina\n");
+	printf("Ingrese una secuencia de dígitos\n");
 	yylex();
+    return 0;
 }
 
