@@ -11,7 +11,7 @@ void createTempFile(FILE *file)
 
 	if (temp==NULL)
 	{
-		fputs ("	File error",stderr); 
+		fputs ("	File error\n",stderr); 
 	}
 	else 
 	{
@@ -27,7 +27,7 @@ void createTempFile(FILE *file)
          		putc(ch, temp);
   	}
  
-   printf("File copied successfully");
+   printf("Input file copied successfully\n");
    fclose(temp);
    fclose(file);
 }

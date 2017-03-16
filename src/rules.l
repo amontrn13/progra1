@@ -44,7 +44,7 @@ int main(int ac, char *av[])
 			printf("Init prepocess...\n");
 			//Se llama al preprocesador
 			createTempFile(fd);
-			printf("File preprocessed.\n");
+			printf("Input file preprocessed.\n");
 			tmp = getTempFile();
 			yyin = fopen( "sourceTemp.txt", "r" );
 	        if(yylex()==EnOF)
