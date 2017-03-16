@@ -1,10 +1,11 @@
 #include "prepro.h"
 
-void createTempFile()
+//la variable temp fue declara en header
+
+void createTempFile(FILE *file)
 {
-	FILE *temp, *fp1;
 	temp = fopen ("sourceTemp.txt", "w");
-	fp1 = fopen("source.txt", "r");
+	file = fopen("source.txt", "r");
 	char ch;
    	//clrscr();
 
@@ -14,12 +15,12 @@ void createTempFile()
 	}
 	else 
 	{
-		printf("	Temporary file 'sourceTemp'created\n");
+		printf("Temporary file 'sourceTemp'created\n");
 	}
 
    	while (1) 
 	{
-      		ch = fgetc(fp1);
+      		ch = fgetc(file);
       		if (ch == EOF)
 	        	break;
       		else
@@ -28,7 +29,12 @@ void createTempFile()
  
    printf("File copied successfully");
    fclose(temp);
-   fclose(fp1);
+   fclose(file);
+}
+
+FILE* getTempFile()
+{
+	return temp;
 }
 
 

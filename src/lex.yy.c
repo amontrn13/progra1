@@ -482,7 +482,8 @@ char *yytext;
 #include <stdlib.h>
 #include <stdio.h>
 #include "scanner.h"
-#line 486 "lex.yy.c"
+#include "prepro.h"
+#line 487 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -702,7 +703,7 @@ YY_DECL
 	{
 #line 13 "rules.l"
 
-#line 706 "lex.yy.c"
+#line 707 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -793,7 +794,7 @@ YY_RULE_SETUP
 #line 20 "rules.l"
 ECHO;
 	YY_BREAK
-#line 797 "lex.yy.c"
+#line 798 "lex.yy.c"
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1796,28 +1797,40 @@ void yyfree (void * ptr )
 
 
 
-int main(int ac, char **av)
+
+int main(int ac, char *av[])
 {
-	initScanner();
-	printf("File preprocessed.\n");
-    
-    FILE    *fd;
-    if (ac == 2)
+    FILE   *fd, *tmp;
+    char *fileName;
+    if (ac != 2)
     {
-        if (!(fd = fopen(av[1], "r")))
+    	printf("Usage: a.out filename.txt\n");
+    	return (0); 
+    }
+    else
+    {
+    	if (!(fd = fopen(av[1], "r")))
         {
             perror("Error: ");
             return (-1);
         }
-        yyset_in(fd);
-        if(yylex()==EnOF)
+        else
         {
-        	return 0 ;
-        };
-        fclose(fd);
+        	//Crea el archivo temporal a partir de source.
+	        fclose(fd);
+	        //initScanner(fd);
+			printf("Init prepocess...\n");
+			//Se llama al preprocesador
+			createTempFile(fd);
+			printf("File preprocessed.\n");
+			tmp = getTempFile();
+			yyin = fopen( "sourceTemp.txt", "r" );
+	        if(yylex()==EnOF)
+	        {
+	        	return 0 ;
+	        }
+        }
     }
-    else
-        printf("Usage: a.out filename.txt\n");
-    return (0);
+        
 }
 

@@ -1,6 +1,6 @@
 #ifndef SCANNER_H
 #define SCANNER_H
-
+#include <stdio.h>
 
 //Tokens
 #define EnOF -1
@@ -12,7 +12,7 @@ typedef enum token_types
 	PLUSOP, MINUSOP, SCANEOF
 } token;
 
-void initScanner(void);
+void initScanner(FILE *file);
 
 
 #endif /* SCANNER_H */

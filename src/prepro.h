@@ -5,6 +5,9 @@
 #include <stdlib.h>
 //#include <conio.h>
 
-void createTempFile();
+FILE *temp;
+
+void createTempFile(FILE *file);
+FILE* getTempFile();
 
 #endif /* PREPRO_H */

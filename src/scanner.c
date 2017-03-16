@@ -1,13 +1,10 @@
-#include <stdio.h>
+
 //#include <unistd.h>
 #include "prepro.h"
 #include "scanner.h"
 
 
-
-void initScanner()
+void initScanner(FILE *file)
 {
-	printf("Init prepocess...\n");
-	//se llama al preprocesador
-	createTempFile();
+	
 }
