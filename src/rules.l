@@ -9,13 +9,15 @@ DIGIT [0-9]
 LETTER [a-zA-Z_]
 OPE "+"|"-"|"*"|"/"
 RW while|for|if|else  
-
+%x STR
 %%
-{RW} 				         {printf ("RESERVED_WORD");}
+{RW} 				         {printf ("RESERVED_WORD ");}
 {LETTER}({LETTER}|{DIGIT})*  {printf ("ID ");}
 {DIGIT}+"."{DIGIT}* 		 {printf ("NUMLITERAL ");}
 {DIGIT}*					 {printf ("NUMLITERAL ");}
 {OPE} 						 {printf ("OPERATOR ");}
+\"  
+<STR>\\\"				 	 {printf ("STRLITERAL ");}
 <<EOF>>    					 {return EnOF;}
 %%
 

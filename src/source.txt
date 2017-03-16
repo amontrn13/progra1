@@ -1,2 +1,2 @@
-#include "one.txt"
+#include "one"
 if else izcar02
