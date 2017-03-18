@@ -1,0 +1,20 @@
+para instalar latex
+
+sudo add-apt-repository ppa:texlive-backports/ppa
+
+sudo apt-get update 
+
+sudo apt-get install texlive-full 
+
+Generar el pdf 
+
+Primero compilar el programa 
+gcc -o salida  salida.c
+
+./salida
+
+y luego 
+
+pdflatex salida.tex
+
+esto genera un monton de archivos  pero solo vean el .pdf
