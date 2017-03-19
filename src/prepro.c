@@ -27,7 +27,7 @@ void createTempFile(FILE *file)
          		putc(ch, temp);
   	}
  
-   printf("Input file copied successfully\n");
+   printf("Source file copied successfully\n");
    fclose(temp);
    fclose(file);
 }

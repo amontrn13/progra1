@@ -3,21 +3,22 @@
 #include <stdio.h>
 #include "scanner.h"
 #include "prepro.h"
+
+struct tokens pToken;
 %}
 
 DIGIT [0-9]
 LETTER [a-zA-Z_]
 OPE "+"|"-"|"*"|"/"
 RW while|for|if|else  
-%x STR
 %%
 {RW} 				         {printf ("RESERVED_WORD ");}
+"#include"                   {printf ("INCLUDE ");}
 {LETTER}({LETTER}|{DIGIT})*  {printf ("ID ");}
 {DIGIT}+"."{DIGIT}* 		 {printf ("NUMLITERAL ");}
 {DIGIT}*					 {printf ("NUMLITERAL ");}
 {OPE} 						 {printf ("OPERATOR ");}
-\"  
-<STR>\\\"				 	 {printf ("STRLITERAL ");}
+ \"[^"]+\"				 	 {printf ("STRLITERAL ");}
 <<EOF>>    					 {return EnOF;}
 %%
 
@@ -28,32 +29,33 @@ int main(int ac, char *av[])
     char *fileName;
     if (ac != 2)
     {
-    	printf("Usage: a.out filename.txt\n");
-    	return (0); 
+        printf("Usage: a.out filename.txt\n");
+        return (0); 
     }
     else
     {
-    	if (!(fd = fopen(av[1], "r")))
+        if (!(fd = fopen(av[1], "r")))
         {
             perror("Error: ");
             return (-1);
         }
         else
         {
-        	//Crea el archivo temporal a partir de source.
-	        fclose(fd);
-	        //initScanner(fd);
-			printf("Init prepocess...\n");
-			//Se llama al preprocesador
-			createTempFile(fd);
-			printf("Input file preprocessed.\n");
-			tmp = getTempFile();
-			yyin = fopen( "sourceTemp.txt", "r" );
-	        if(yylex()==EnOF)
-	        {
-	        	return 0 ;
-	        }
+            //Crea el archivo temporal a partir de source.
+            fclose(fd);
+            //initScanner(fd);
+            printf("Init prepocess...\n");
+            //Se llama al preprocesador
+            createTempFile(fd);
+            printf("Source file preprocessed.\n");
+            tmp = getTempFile();
+            yyin = fopen( "sourceTemp.txt", "r" );
+            if(yylex()==EnOF)
+            {
+                return 0 ;
+            }
         }
     }
         
 }
+
